@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dificultad"></ion-back-button>
+    </ion-buttons>
+    <ion-title>🧩 Memorama</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding juego-content">
+  <div class="stats-row">
+    <div class="stat">
+      <span class="val">{{ movimientos }}</span>
+      <span class="lbl">Movimientos</span>
+    </div>
+    <div class="stat">
+      <span class="val">{{ parejasEncontradas }}</span>
+      <span class="lbl">Parejas</span>
+    </div>
+    <div class="stat">
+      <span class="val">{{ tiempoFormateado }}</span>
+      <span class="lbl">Tiempo</span>
+    </div>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-fill" [style.width.%]="progreso"></div>
+  </div>
+
+  <div class="board" [ngStyle]="{ 'grid-template-columns': 'repeat(' + columnas + ', 1fr)' }">
+    <div
+      *ngFor="let carta of cartas; let i = index"
+      class="card"
+      [class.revealed]="carta.volteada"
+      [class.matched]="carta.emparejada"
+      (click)="voltearCarta(i)">
+      <div class="card-inner">
+        <div class="card-front">?</div>
+        <div class="card-back">{{ carta.emoji }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-actions">
+    <ion-button expand="block" color="danger" (click)="reiniciar()">
+      Reiniciar
+    </ion-button>
+  </div>
+</ion-content>

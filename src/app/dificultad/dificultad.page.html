@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>🧩 Memorama</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding dificultad-content">
+  <h2 class="section-title">Elige dificultad</h2>
+  <p class="section-sub">Selecciona el tamaño del tablero</p>
+
+  <div class="difficulty-list">
+    <div
+      class="difficulty-card"
+      [class.selected]="seleccion === 'facil'"
+      (click)="seleccionar('facil')">
+      <div class="info">
+        <span class="title">Fácil</span>
+        <span class="sub">4×3 tablero · 6 parejas</span>
+      </div>
+      <span class="dot">🟢</span>
+    </div>
+
+    <div
+      class="difficulty-card"
+      [class.selected]="seleccion === 'medio'"
+      (click)="seleccionar('medio')">
+      <div class="info">
+        <span class="title">Medio</span>
+        <span class="sub">4×4 tablero · 8 parejas</span>
+      </div>
+      <span class="dot">🟡</span>
+    </div>
+
+    <div
+      class="difficulty-card"
+      [class.selected]="seleccion === 'dificil'"
+      (click)="seleccionar('dificil')">
+      <div class="info">
+        <span class="title">Difícil</span>
+        <span class="sub">5×4 tablero · 10 parejas</span>
+      </div>
+      <span class="dot">🔴</span>
+    </div>
+  </div>
+
+  <div class="actions">
+    <ion-button expand="block" color="primary" [disabled]="!seleccion" (click)="comenzar()">
+      Comenzar Juego
+    </ion-button>
+    <ion-button expand="block" fill="outline" color="medium" (click)="volver()">
+      Volver
+    </ion-button>
+  </div>
+</ion-content>

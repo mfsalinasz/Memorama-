@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>🧩 Memorama</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding victoria-content">
+  <div class="victoria-container">
+    <div class="trophy">🏆</div>
+    <h1>¡Completado!</h1>
+
+    <div class="result-card">
+      <div class="result-row">
+        <span class="result-label">Movimientos</span>
+        <span class="result-value">{{ movimientos }}</span>
+      </div>
+      <div class="result-row">
+        <span class="result-label">Tiempo</span>
+        <span class="result-value">{{ tiempo }}</span>
+      </div>
+      <div class="result-row">
+        <span class="result-label">Dificultad</span>
+        <span class="result-value capitalize">{{ dificultad }}</span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <ion-button expand="block" color="primary" (click)="jugarOtraVez()">
+        Jugar Otra Vez
+      </ion-button>
+      <ion-button expand="block" fill="outline" color="medium" (click)="irAlMenu()">
+        Menú Principal
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

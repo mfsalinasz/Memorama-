@@ -1,20 +1,18 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content class="ion-padding home-content">
+  <div class="home-container">
+    <div class="welcome-icon">🧠</div>
+    <h1>¡Memorama!</h1>
+    <p class="welcome-text">
+      Encuentra todas las parejas volteando las cartas.<br />
+      ¡Menos movimientos es mejor!
+    </p>
+    <div class="buttons-area">
+      <ion-button expand="block" color="primary" (click)="irADificultad()">
+        Jugar
+      </ion-button>
+      <ion-button expand="block" fill="outline" color="primary" (click)="verMejoresTiempos()">
+        Ver Mejores Tiempos
+      </ion-button>
+    </div>
   </div>
 </ion-content>

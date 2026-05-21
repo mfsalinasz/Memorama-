@@ -1,0 +1,107 @@
+.juego-content {
+  --background: #f0f2f5;
+}
+
+.stats-row {
+  display: flex;
+  justify-content: space-around;
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 10px;
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .val {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .lbl {
+      font-size: 0.7rem;
+      color: #888;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.progress-bar {
+  width: 100%;
+  height: 7px;
+  background: #ddd;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  overflow: hidden;
+
+  .progress-fill {
+    height: 100%;
+    background: var(--ion-color-success);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+  }
+}
+
+.board {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.card {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  cursor: pointer;
+  perspective: 600px;
+
+  .card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.4s;
+    border-radius: 12px;
+  }
+
+  .card-front,
+  .card-back {
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+  }
+
+  .card-front {
+    background: var(--ion-color-primary);
+    color: rgba(255,255,255,0.85);
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .card-back {
+    background: #fff;
+    border: 2px solid #ddd;
+    font-size: 1.8rem;
+    transform: rotateY(180deg);
+  }
+
+  &.revealed .card-inner,
+  &.matched .card-inner {
+    transform: rotateY(180deg);
+  }
+
+  &.matched .card-back {
+    background: #d4edda;
+    border-color: var(--ion-color-success);
+  }
+}
+
+.bottom-actions {
+  margin-top: auto;
+}
