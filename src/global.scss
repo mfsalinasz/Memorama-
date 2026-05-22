@@ -1,4 +1,3 @@
-// Ionic Variables and Theming
 @import "@ionic/angular/css/core.css";
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
@@ -13,6 +12,14 @@
 * {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   box-sizing: border-box;
+}
+
+/* Bloquear overscroll/bounce en toda la app */
+html, body {
+  overscroll-behavior: none;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
 }
 
 :root {
