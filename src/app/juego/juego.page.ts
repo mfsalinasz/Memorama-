@@ -1,10 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule, NgStyle } from '@angular/common';
-import {
-  IonHeader, IonToolbar, IonTitle, IonContent,
-  IonButton, IonButtons, IonBackButton
-} from '@ionic/angular/standalone';
+import { IonContent } from '@ionic/angular/standalone';
 
 export interface Carta {
   id: number;
@@ -18,7 +15,7 @@ export interface Carta {
   templateUrl: './juego.page.html',
   styleUrls: ['./juego.page.scss'],
   standalone: true,
-  imports: [CommonModule, NgStyle, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonButtons, IonBackButton],
+  imports: [CommonModule, NgStyle, IonContent],
 })
 export class JuegoPage implements OnInit, OnDestroy {
   dificultad: string = 'facil';
@@ -43,13 +40,8 @@ export class JuegoPage implements OnInit, OnDestroy {
     }
   }
 
-  ngOnInit() {
-    this.iniciarJuego();
-  }
-
-  ngOnDestroy() {
-    clearInterval(this.intervalo);
-  }
+  ngOnInit() { this.iniciarJuego(); }
+  ngOnDestroy() { clearInterval(this.intervalo); }
 
   iniciarJuego() {
     clearInterval(this.intervalo);
@@ -59,6 +51,7 @@ export class JuegoPage implements OnInit, OnDestroy {
     this.tiempoFormateado = '0:00';
     this.cartasVolteadas = [];
     this.bloqueado = false;
+    this.progreso = 0;
 
     let numParejas = 6;
     this.columnas = 4;
@@ -70,12 +63,7 @@ export class JuegoPage implements OnInit, OnDestroy {
     const dobles = [...emojisSeleccionados, ...emojisSeleccionados];
     const mezclado = dobles.sort(() => Math.random() - 0.5);
 
-    this.cartas = mezclado.map((emoji, index) => ({
-      id: index,
-      emoji,
-      volteada: false,
-      emparejada: false,
-    }));
+    this.cartas = mezclado.map((emoji, index) => ({ id: index, emoji, volteada: false, emparejada: false }));
 
     this.intervalo = setInterval(() => {
       this.tiempoSegundos++;
@@ -88,7 +76,6 @@ export class JuegoPage implements OnInit, OnDestroy {
   voltearCarta(index: number) {
     const carta = this.cartas[index];
     if (this.bloqueado || carta.volteada || carta.emparejada) return;
-
     carta.volteada = true;
     this.cartasVolteadas.push(index);
 
@@ -109,11 +96,7 @@ export class JuegoPage implements OnInit, OnDestroy {
           clearInterval(this.intervalo);
           setTimeout(() => {
             this.router.navigate(['/victoria'], {
-              state: {
-                movimientos: this.movimientos,
-                tiempo: this.tiempoFormateado,
-                dificultad: this.dificultad
-              }
+              state: { movimientos: this.movimientos, tiempo: this.tiempoFormateado, dificultad: this.dificultad }
             });
           }, 600);
         }
@@ -128,7 +111,9 @@ export class JuegoPage implements OnInit, OnDestroy {
     }
   }
 
-  reiniciar() {
-    this.iniciarJuego();
+  reiniciar() { this.iniciarJuego(); }
+  volver() {
+    clearInterval(this.intervalo);
+    this.router.navigate(['/dificultad']);
   }
 }

@@ -1,18 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import {
-  IonHeader, IonToolbar, IonTitle, IonContent, IonButton
-} from '@ionic/angular/standalone';
+import { IonContent } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-victoria',
   templateUrl: './victoria.page.html',
   styleUrls: ['./victoria.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonHeader, IonToolbar, IonTitle, IonContent, IonButton],
+  imports: [CommonModule, IonContent],
 })
-export class VictoriaPage implements OnInit {
+export class VictoriaPage {
   movimientos: number = 0;
   tiempo: string = '0:00';
   dificultad: string = 'facil';
@@ -26,13 +24,6 @@ export class VictoriaPage implements OnInit {
     }
   }
 
-  ngOnInit() {}
-
-  jugarOtraVez() {
-    this.router.navigate(['/dificultad']);
-  }
-
-  irAlMenu() {
-    this.router.navigate(['/home']);
-  }
+  jugarOtraVez() { this.router.navigate(['/dificultad']); }
+  irAlMenu() { this.router.navigate(['/home']); }
 }

@@ -1,37 +1,36 @@
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
-
-/* Core CSS required for Ionic components to work properly */
+// Ionic Variables and Theming
 @import "@ionic/angular/css/core.css";
-
-/* Basic CSS for apps built with Ionic */
 @import "@ionic/angular/css/normalize.css";
 @import "@ionic/angular/css/structure.css";
 @import "@ionic/angular/css/typography.css";
-@import "@ionic/angular/css/display.css";
-
-/* Optional CSS utils that can be commented out */
+@import '@ionic/angular/css/display.css';
 @import "@ionic/angular/css/padding.css";
 @import "@ionic/angular/css/float-elements.css";
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
+* {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  box-sizing: border-box;
+}
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
+:root {
+  --ion-color-primary: #6C63FF;
+  --ion-color-primary-rgb: 108,99,255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-shade: #5a52d5;
+  --ion-color-primary-tint: #7b73ff;
+
+  --ion-color-success: #2DD36F;
+  --ion-color-danger: #EB445A;
+
+  --app-bg: #0F0F1A;
+  --card-bg: #1C1C2E;
+  --card-border: #2E2E45;
+  --text-primary: #FFFFFF;
+  --text-secondary: #8B8BA0;
+  --accent: #6C63FF;
+  --accent-glow: rgba(108,99,255,0.3);
+  --success-glow: rgba(45,211,111,0.25);
+}

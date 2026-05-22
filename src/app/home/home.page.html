@@ -1,18 +1,20 @@
-<ion-content class="ion-padding home-content">
+<ion-content [fullscreen]="true" class="home-content">
   <div class="home-container">
-    <div class="welcome-icon">🧠</div>
-    <h1>¡Memorama!</h1>
-    <p class="welcome-text">
-      Encuentra todas las parejas volteando las cartas.<br />
-      ¡Menos movimientos es mejor!
-    </p>
-    <div class="buttons-area">
-      <ion-button expand="block" color="primary" (click)="irADificultad()">
-        Jugar
-      </ion-button>
-      <ion-button expand="block" fill="outline" color="primary" (click)="verMejoresTiempos()">
-        Ver Mejores Tiempos
-      </ion-button>
+    <div class="logo-area">
+      <div class="logo-icon">🧠</div>
+      <h1 class="app-title">Memorama</h1>
+      <p class="app-subtitle">Entrena tu memoria. Encuentra todas las parejas.</p>
     </div>
+
+    <div class="home-actions">
+      <button class="btn-primary" (click)="irADificultad()">
+        <span class="btn-icon">▶</span> Jugar
+      </button>
+      <button class="btn-ghost" (click)="verMejoresTiempos()">
+        🏆 Mejores Tiempos
+      </button>
+    </div>
+
+    <p class="version-label">v1.0</p>
   </div>
 </ion-content>

@@ -1,36 +1,40 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>🧩 Memorama</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content class="ion-padding victoria-content">
+<ion-content [fullscreen]="true" class="victoria-content">
   <div class="victoria-container">
-    <div class="trophy">🏆</div>
-    <h1>¡Completado!</h1>
+
+    <div class="glow-ring">
+      <div class="trophy">🏆</div>
+    </div>
+
+    <div class="text-area">
+      <h1>¡Completado!</h1>
+      <p class="sub">Encontraste todas las parejas</p>
+    </div>
 
     <div class="result-card">
       <div class="result-row">
-        <span class="result-label">Movimientos</span>
+        <span class="result-label">🎯 Movimientos</span>
         <span class="result-value">{{ movimientos }}</span>
       </div>
+      <div class="divider"></div>
       <div class="result-row">
-        <span class="result-label">Tiempo</span>
+        <span class="result-label">⏱ Tiempo</span>
         <span class="result-value">{{ tiempo }}</span>
       </div>
+      <div class="divider"></div>
       <div class="result-row">
-        <span class="result-label">Dificultad</span>
+        <span class="result-label">⚡ Dificultad</span>
         <span class="result-value capitalize">{{ dificultad }}</span>
       </div>
     </div>
 
     <div class="actions">
-      <ion-button expand="block" color="primary" (click)="jugarOtraVez()">
+      <button class="btn-primary" (click)="jugarOtraVez()">
         Jugar Otra Vez
-      </ion-button>
-      <ion-button expand="block" fill="outline" color="medium" (click)="irAlMenu()">
+      </button>
+      <button class="btn-ghost" (click)="irAlMenu()">
         Menú Principal
-      </ion-button>
+      </button>
     </div>
+
   </div>
 </ion-content>

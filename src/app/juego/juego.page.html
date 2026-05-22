@@ -1,49 +1,55 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/dificultad"></ion-back-button>
-    </ion-buttons>
-    <ion-title>🧩 Memorama</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="juego-content">
+  <div class="juego-wrapper">
 
-<ion-content class="ion-padding juego-content">
-  <div class="stats-row">
-    <div class="stat">
-      <span class="val">{{ movimientos }}</span>
-      <span class="lbl">Movimientos</span>
+    <!-- Header -->
+    <div class="juego-header">
+      <button class="back-btn" (click)="volver()">←</button>
+      <span class="header-title">🧩 Memorama</span>
+      <span></span>
     </div>
-    <div class="stat">
-      <span class="val">{{ parejasEncontradas }}</span>
-      <span class="lbl">Parejas</span>
-    </div>
-    <div class="stat">
-      <span class="val">{{ tiempoFormateado }}</span>
-      <span class="lbl">Tiempo</span>
-    </div>
-  </div>
 
-  <div class="progress-bar">
-    <div class="progress-fill" [style.width.%]="progreso"></div>
-  </div>
-
-  <div class="board" [ngStyle]="{ 'grid-template-columns': 'repeat(' + columnas + ', 1fr)' }">
-    <div
-      *ngFor="let carta of cartas; let i = index"
-      class="card"
-      [class.revealed]="carta.volteada"
-      [class.matched]="carta.emparejada"
-      (click)="voltearCarta(i)">
-      <div class="card-inner">
-        <div class="card-front">?</div>
-        <div class="card-back">{{ carta.emoji }}</div>
+    <!-- Stats -->
+    <div class="stats-row">
+      <div class="stat">
+        <span class="val">{{ movimientos }}</span>
+        <span class="lbl">Mov.</span>
+      </div>
+      <div class="stat center-stat">
+        <span class="val accent">{{ parejasEncontradas }}/{{ totalParejas }}</span>
+        <span class="lbl">Parejas</span>
+      </div>
+      <div class="stat">
+        <span class="val">{{ tiempoFormateado }}</span>
+        <span class="lbl">Tiempo</span>
       </div>
     </div>
-  </div>
 
-  <div class="bottom-actions">
-    <ion-button expand="block" color="danger" (click)="reiniciar()">
-      Reiniciar
-    </ion-button>
+    <!-- Progress -->
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="progreso"></div>
+    </div>
+
+    <!-- Board -->
+    <div class="board-container">
+      <div class="board" [ngStyle]="{'grid-template-columns': 'repeat(' + columnas + ', 1fr)'}">
+        <div
+          *ngFor="let carta of cartas; let i = index"
+          class="card"
+          [class.revealed]="carta.volteada"
+          [class.matched]="carta.emparejada"
+          (click)="voltearCarta(i)">
+          <div class="card-inner">
+            <div class="card-front">?</div>
+            <div class="card-back">{{ carta.emoji }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="bottom-bar">
+      <button class="btn-reiniciar" (click)="reiniciar()">🔄 Reiniciar</button>
+    </div>
+
   </div>
 </ion-content>
