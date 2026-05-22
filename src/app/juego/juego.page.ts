@@ -24,6 +24,7 @@ export class JuegoPage implements OnInit, OnDestroy {
   parejasEncontradas: number = 0;
   totalParejas: number = 0;
   columnas: number = 4;
+  filas: number = 3;
   tiempoSegundos: number = 0;
   tiempoFormateado: string = '0:00';
   progreso: number = 0;
@@ -53,17 +54,20 @@ export class JuegoPage implements OnInit, OnDestroy {
     this.bloqueado = false;
     this.progreso = 0;
 
-    let numParejas = 6;
-    this.columnas = 4;
-    if (this.dificultad === 'medio') { numParejas = 8; this.columnas = 4; }
-    if (this.dificultad === 'dificil') { numParejas = 10; this.columnas = 5; }
-    this.totalParejas = numParejas;
+    // Definir columnas y filas por dificultad
+    if (this.dificultad === 'facil')  { this.columnas = 4; this.filas = 3; }
+    if (this.dificultad === 'medio')  { this.columnas = 4; this.filas = 4; }
+    if (this.dificultad === 'dificil'){ this.columnas = 5; this.filas = 4; }
 
-    const emojisSeleccionados = this.emojis.slice(0, numParejas);
+    this.totalParejas = (this.columnas * this.filas) / 2;
+
+    const emojisSeleccionados = this.emojis.slice(0, this.totalParejas);
     const dobles = [...emojisSeleccionados, ...emojisSeleccionados];
     const mezclado = dobles.sort(() => Math.random() - 0.5);
 
-    this.cartas = mezclado.map((emoji, index) => ({ id: index, emoji, volteada: false, emparejada: false }));
+    this.cartas = mezclado.map((emoji, index) => ({
+      id: index, emoji, volteada: false, emparejada: false
+    }));
 
     this.intervalo = setInterval(() => {
       this.tiempoSegundos++;

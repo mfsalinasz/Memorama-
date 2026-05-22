@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true" class="juego-content">
+<ion-content [fullscreen]="true" class="juego-content" [scrollY]="false">
   <div class="juego-wrapper">
 
     <!-- Header -->
@@ -14,7 +14,7 @@
         <span class="val">{{ movimientos }}</span>
         <span class="lbl">Mov.</span>
       </div>
-      <div class="stat center-stat">
+      <div class="stat">
         <span class="val accent">{{ parejasEncontradas }}/{{ totalParejas }}</span>
         <span class="lbl">Parejas</span>
       </div>
@@ -31,7 +31,10 @@
 
     <!-- Board -->
     <div class="board-container">
-      <div class="board" [ngStyle]="{'grid-template-columns': 'repeat(' + columnas + ', 1fr)'}">
+      <div
+        class="board"
+        [style.grid-template-columns]="'repeat(' + columnas + ', 1fr)'"
+        [style.grid-template-rows]="'repeat(' + filas + ', 1fr)'">
         <div
           *ngFor="let carta of cartas; let i = index"
           class="card"

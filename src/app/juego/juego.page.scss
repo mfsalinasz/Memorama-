@@ -1,31 +1,40 @@
 .juego-content {
   --background: var(--app-bg);
   --color: var(--text-primary);
-  --overflow: hidden;
+  height: 100%;
+
+  ion-content::part(scroll) {
+    overflow: hidden !important;
+  }
 }
 
 .juego-wrapper {
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
-  padding: 48px 16px 16px;
-  gap: 10px;
+  padding: env(safe-area-inset-top, 16px) 14px 14px;
+  padding-top: max(env(safe-area-inset-top, 0px), 48px);
+  gap: 8px;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
+/* ── Header ─────────────────────────────────── */
 .juego-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-shrink: 0;
 
   .back-btn {
     background: var(--card-bg);
     border: 1.5px solid var(--card-border);
     border-radius: 12px;
     color: var(--text-primary);
-    font-size: 1.2rem;
-    width: 38px;
-    height: 38px;
+    font-size: 1.1rem;
+    width: 36px;
+    height: 36px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -33,36 +42,39 @@
   }
 
   .header-title {
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--text-primary);
   }
 }
 
+/* ── Stats ───────────────────────────────────── */
 .stats-row {
   display: flex;
   justify-content: space-around;
   background: var(--card-bg);
-  border-radius: 16px;
-  padding: 12px 8px;
+  border-radius: 14px;
+  padding: 10px 8px;
   border: 1.5px solid var(--card-border);
+  flex-shrink: 0;
 
   .stat {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2px;
+    gap: 1px;
 
     .val {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: var(--text-primary);
+      line-height: 1.2;
 
       &.accent { color: var(--accent); }
     }
 
     .lbl {
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       color: var(--text-secondary);
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -70,42 +82,49 @@
   }
 }
 
+/* ── Progress ────────────────────────────────── */
 .progress-bar {
   width: 100%;
-  height: 5px;
+  height: 4px;
   background: var(--card-bg);
-  border-radius: 3px;
+  border-radius: 2px;
   overflow: hidden;
+  flex-shrink: 0;
 
   .progress-fill {
     height: 100%;
     background: linear-gradient(90deg, var(--accent), #a78bfa);
-    border-radius: 3px;
+    border-radius: 2px;
     transition: width 0.4s ease;
   }
 }
 
+/* ── Board – ocupa TODO el espacio restante ──── */
 .board-container {
-  flex: 1;
+  flex: 1 1 0;
+  min-height: 0;        /* clave para que flex no se desborde */
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   overflow: hidden;
 }
 
 .board {
   display: grid;
-  gap: 8px;
+  gap: 7px;
   width: 100%;
   height: 100%;
-  align-content: center;
+  /* Las filas se dividen equitativamente en el espacio disponible */
+  grid-auto-rows: 1fr;
 }
 
+/* ── Carta ───────────────────────────────────── */
 .card {
-  aspect-ratio: 1;
-  border-radius: 14px;
+  border-radius: 12px;
   cursor: pointer;
   perspective: 600px;
+  min-height: 0;        /* evita que las cartas crezcan más de lo asignado */
+  overflow: hidden;
 
   .card-inner {
     width: 100%;
@@ -113,14 +132,14 @@
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.35s ease;
-    border-radius: 14px;
+    border-radius: 12px;
   }
 
   .card-front,
   .card-back {
     position: absolute;
     inset: 0;
-    border-radius: 14px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -131,15 +150,14 @@
     background: var(--card-bg);
     border: 1.5px solid var(--card-border);
     color: var(--text-secondary);
-    font-size: 1.3rem;
+    font-size: clamp(1rem, 3vw, 1.4rem);
     font-weight: 700;
-    transition: border-color 0.2s;
   }
 
   .card-back {
     background: var(--card-bg);
     border: 1.5px solid var(--accent);
-    font-size: 1.6rem;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
     transform: rotateY(180deg);
   }
 
@@ -149,9 +167,9 @@
   }
 
   &.matched .card-back {
-    background: rgba(45,211,111,0.1);
+    background: rgba(45, 211, 111, 0.08);
     border-color: var(--ion-color-success);
-    box-shadow: 0 0 12px var(--success-glow);
+    box-shadow: 0 0 10px rgba(45, 211, 111, 0.2);
   }
 
   &:not(.matched):not(.revealed):active .card-inner {
@@ -159,15 +177,18 @@
   }
 }
 
+/* ── Botón reiniciar ─────────────────────────── */
 .bottom-bar {
+  flex-shrink: 0;
+
   .btn-reiniciar {
     width: 100%;
-    padding: 14px;
+    padding: 12px;
     border: 1.5px solid var(--card-border);
     border-radius: 14px;
     background: transparent;
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     letter-spacing: 0.3px;
